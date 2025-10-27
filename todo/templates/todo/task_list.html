@@ -12,6 +12,8 @@
       {% else %}
         ✅ Completed
       {% endif %}
+      | <a href="{% url 'task_edit' task.id %}">Edit</a>
+      | <a href="{% url 'task_delete' task.id %}">Delete</a>
     </li>
   {% empty %}
     <li>No tasks yet.</li>
