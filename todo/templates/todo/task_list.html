@@ -2,7 +2,17 @@
 
 <ul>
   {% for task in tasks %}
-    <li>{{ task.title }}</li>
+    <li>
+      {{ task.title }}
+      {% if not task.is_completed %}
+        <form action="{% url 'task_complete' task.id %}" method="post" style="display:inline;">
+          {% csrf_token %}
+          <button type="submit">Mark Complete</button>
+        </form>
+      {% else %}
+        ✅ Completed
+      {% endif %}
+    </li>
   {% empty %}
     <li>No tasks yet.</li>
   {% endfor %}
